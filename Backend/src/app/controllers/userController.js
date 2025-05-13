@@ -23,6 +23,19 @@ class userController {
     }
   }
 
+  async getUserByEmail(req, res) {
+    const { email } = req.body;
+    try {
+      const user = await User.findOne({ email });
+      if (!user) {
+        return res.status(404).json({ message: "User not found" });
+      }
+      return res.status(200).json(user);
+    } catch (error) {
+      return res.status(500).json({ message: "Server error", error });
+    }
+  }
+
   async registerUser(req, res) {
     try {
       const { name, email, password } = req.body;
@@ -128,6 +141,31 @@ class userController {
       res.status(200).json({ message: "Đăng nhập thành công", user });
     } catch (error) {
       console.error("Lỗi đăng nhập:", error);
+      res.status(500).json({ message: "Lỗi server", error });
+    }
+  }
+
+  async changePassword(req, res) {
+    const { email, oldPassword, newPassword } = req.body;
+
+    try {
+      // Tìm người dùng theo email
+      const user = await User.findOne({ email });
+      if (!user) {
+        return res.status(400).json({ message: "Người dùng không tồn tại" });
+      }
+      // Kiểm tra mật khẩu cũ
+      const isMatch = await bcrypt.compare(oldPassword, user.password);
+      if (!isMatch) {
+        return res.status(400).json({ message: "Mật khẩu cũ không đúng" });
+      }
+      // Hash mật khẩu mới
+      const hashedPassword = await bcrypt.hash(newPassword, 10);
+      // Cập nhật mật khẩu
+      user.password = hashedPassword;
+      await user.save();
+      res.status(200).json({ message: "Đổi mật khẩu thành công" });
+    } catch (error) {
       res.status(500).json({ message: "Lỗi server", error });
     }
   }
