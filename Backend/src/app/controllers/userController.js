@@ -169,6 +169,32 @@ class userController {
       res.status(500).json({ message: "Lỗi server", error });
     }
   }
+
+  async changeProfileInformation(req, res) {
+    const { name, email, address, phone, dob, gender } = req.body;
+    const userId = req.params.id;
+
+    try {
+      // Tìm người dùng theo ID
+      const user = await User.findById(userId);
+      if (!user) {
+        return res.status(400).json({ message: "Người dùng không tồn tại" });
+      }
+
+      // Cập nhật thông tin người dùng
+      user.name = name;
+      user.email = email;
+      user.address = address;
+      user.phone = phone;
+      user.dob = dob;
+      user.gender = gender;
+      await user.save();
+
+      res.status(200).json({ message: "Cập nhật thông tin thành công" });
+    } catch (error) {
+      res.status(500).json({ message: "Lỗi server", error });
+    }
+  }
 }
 
 module.exports = new userController();

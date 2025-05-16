@@ -9,5 +9,6 @@ router.post('/account/register', userController.registerUser);
 router.post('/account/verify', userController.verifyUser);
 router.post('/account/login', userController.loginUser);
 router.post('/account/change-password', userController.changePassword);
+router.post('/account/change-profile/:id', userController.changeProfileInformation);
 
 module.exports = router;
