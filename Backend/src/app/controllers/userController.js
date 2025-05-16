@@ -43,7 +43,7 @@ class userController {
       // Kiểm tra email đã tồn tại
       const existingUser = await User.findOne({ email });
       if (existingUser) {
-        return res.status(400).json({ message: "Email already exists" });
+        return res.status(400).json({ message: "Email đã tồn tại" });
       }
 
       // Tạo OTP và hash mật khẩu
