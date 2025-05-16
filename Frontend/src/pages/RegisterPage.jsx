@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Button } from "@mui/material"; // hoặc từ một file component nào đó
 import { UserService } from "../services/userService";
+import { useNavigate } from "react-router-dom";
 const RegisterPage = () => {
   const [fullname, setFullname] = useState("");
   const [email, setEmail] = useState("");
@@ -8,11 +9,13 @@ const RegisterPage = () => {
   const [errorMsg, setErrorMsg] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
+  const navigate = useNavigate();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       await UserService.register(fullname, email, password);
-      window.location.href = "/";
+      navigate("/verify", { state: { email } });
     } catch (err) {
       setErrorMsg(err.message);
     }
