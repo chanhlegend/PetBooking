@@ -5,6 +5,7 @@ const imageRouter = require('./image')
 const cartRouter = require('./cart')
 const serviceRouter = require('./service')
 const scheduleRouter = require('./schedule')
+const orderRouter = require('./order')
 
 function route(app) {
     app.use('/api/user', userRouter);
@@ -14,5 +15,6 @@ function route(app) {
     app.use('/api/cart', cartRouter);
     app.use('/api/service', serviceRouter);
     app.use('/api/schedule', scheduleRouter);
+    app.use('/api/order', orderRouter);
 }
 module.exports = route
