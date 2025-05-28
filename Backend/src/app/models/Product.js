@@ -10,7 +10,6 @@
         sellerId: { type: Schema.Types.ObjectId, ref: 'User', required: true },
         status: { type: String, default: 'active' },
         category: { type: Schema.Types.ObjectId, ref: 'Category', required: true },
-        evaluate: [{ type: Schema.Types.ObjectId, ref: 'Evaluate'}],
     }, { timestamps: true });
 
     module.exports = mongoose.model('Product', Product);

@@ -6,7 +6,6 @@ class productController {
       const products = await Product.find()
         .populate("category")
         .populate("sellerId")
-        .populate("evaluate")
         .populate("image");
       return res.status(200).json(products);
     } catch (error) {
@@ -47,7 +46,6 @@ class productController {
       const product = await Product.findById(id)
         .populate("category")
         .populate("sellerId")
-        .populate("evaluate")
         .populate("image");
       if (!product) {
         return res.status(404).json({ message: "Product not found" });
@@ -64,7 +62,6 @@ class productController {
       const products = await Product.find({ category: categoryId })
         .populate("category")
         .populate("sellerId")
-        .populate("evaluate")
         .populate("image");
       if (!products) {
         return res.status(404).json({ message: "Products not found" });
@@ -81,7 +78,6 @@ class productController {
       const products = await Product.find({ sellerId })
         .populate("category")
         .populate("sellerId")
-        .populate("evaluate")
         .populate("image");
       if (!products) {
         return res.status(404).json({ message: "Products not found" });
