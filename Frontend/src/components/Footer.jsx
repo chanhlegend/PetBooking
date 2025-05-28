@@ -7,7 +7,7 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 
 function Footer() {
   return (
-     <footer className="bg-custom-orange text-white font-sans px-6 py-10 mx-auto flex flex-wrap justify-between" style={{ gap: '6rem' }}>
+     <footer className="bg-custom-orange text-white font-sans px-6 py-10 mx-auto flex flex-wrap justify-between pl-20 pr-20" style={{ gap: '6rem' }}>
       {/* Logo + Name */}
       <div className="flex flex-col items-center sm:items-start w-full sm:w-auto mb-8 sm:mb-0">
         <h2 className="font-serif font-semibold text-lg mb-6">PET BOOKING</h2>
