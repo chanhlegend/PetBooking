@@ -12,7 +12,7 @@
   --color-primary: #5865f2;
 
   --color-custom-dark: #ff3737;
-
+  --color-custom-orange: #E35E25;
   --animate-slide-down: slide-down 1s ease-out;
 
   @keyframes slide-down {
