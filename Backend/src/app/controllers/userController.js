@@ -4,7 +4,9 @@ const bcrypt = require("bcrypt");
 class userController {
   async getAllUsers(req, res) {
     try {
-      const users = await User.find();
+      const users = await User.find()
+        .populate("followers")
+        .populate("serviceId");
       return res.status(200).json(users);
     } catch (error) {
       return res.status(500).json({ message: "Server error", error });
@@ -13,7 +15,9 @@ class userController {
 
   async getUser(req, res) {
     try {
-      const user = await User.findById(req.params.id);
+      const user = await User.findById(req.params.id)
+        .populate("followers")
+        .populate("serviceId");
       if (!user) {
         return res.status(404).json({ message: "User not found" });
       }
@@ -26,7 +30,9 @@ class userController {
   async getUserByEmail(req, res) {
     const { email } = req.body;
     try {
-      const user = await User.findOne({ email });
+      const user = await User.findOne({ email })
+        .populate("followers")
+        .populate("serviceId");
       if (!user) {
         return res.status(404).json({ message: "User not found" });
       }

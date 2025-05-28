@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
     const Schema = mongoose.Schema;
 
     const Order = new Schema({
-        productId: { type: Schema.Types.ObjectId, ref: 'Product' },
+        productId: [{ type: Schema.Types.ObjectId, ref: 'Product' }],
         userId: { type: Schema.Types.ObjectId, ref: 'User' },
         totalPrice: { type: Number },
         status: { type: String, enum: ['pending', 'shipped', 'delivered', 'cancelled'], default: 'pending' },
