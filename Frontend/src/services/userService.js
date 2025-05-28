@@ -1,77 +1,47 @@
-// src/services/UserService.js
+import axios from "axios";
+
 const API_URL = "http://localhost:3000/api/user/account";
 
 export const UserService = {
   login: async (email, password) => {
-    const res = await fetch(`${API_URL}/login`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email, password }),
-    });
-
-    const data = await res.json();
-    if (!res.ok) {
-      throw new Error(data.message || "Đăng nhập thất bại");
-    } else {
-      window.location.href = "/";
+    try {
+      const res = await axios.post(`${API_URL}/login`, { email, password });
+      window.location.href = "/home";
+      return res.data;
+    } catch (error) {
+      throw new Error(error.response?.data?.message || "Đăng nhập thất bại");
     }
-
-    return data;
   },
 
   register: async (fullname, email, password) => {
-    const res = await fetch(`${API_URL}/register`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ fullname, email, password }),
-    });
-    const data = await res.json();
-    if (!res.ok) {
-      throw new Error(data.message || "Đăng ký thất bại");
-    } 
-
-    return data;
+    try {
+      const res = await axios.post(`${API_URL}/register`, {
+        fullname,
+        email,
+        password,
+      });
+      return res.data;
+    } catch (error) {
+      throw new Error(error.response?.data?.message || "Đăng ký thất bại");
+    }
   },
 
   getOTPVerify: async (email) => {
     try {
-      const res = await fetch(`${API_URL}/email`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email }),
-      });
-      if (!res.ok) {
-        const errorData = await res.json();
-        throw new Error(errorData.message || "Lấy OTP thất bại");
-      }
-
-      const data = await res.json();
-      return data;
+      const res = await axios.post(`${API_URL}/email`, { email });
+      return res.data;
     } catch (error) {
       console.error("Lỗi khi gọi getOTPVerify:", error);
-      throw error;
+      throw new Error(error.response?.data?.message || "Lấy OTP thất bại");
     }
   },
-  
-  verifyOTP: async (email, otp) => {
-    const res = await fetch(`${API_URL}/verify`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email, otp }),
-    });
-    const data = await res.json();
-    if (!res.ok) {
-      throw new Error(data.message || "Xác thực OTP thất bại");
-    } 
 
-    return data;
+  verifyOTP: async (email, otp) => {
+    try {
+      const res = await axios.post(`${API_URL}/verify`, { email, otp });
+      return res.data;
+    } catch (error) {
+      throw new Error(error.response?.data?.message || "Xác thực OTP thất bại");
+    }
   },
 };
