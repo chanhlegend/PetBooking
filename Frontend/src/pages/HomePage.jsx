@@ -17,6 +17,7 @@ import CatTia from "../assets/images/CatTia.png";
 import HuanLuyen from "../assets/images/HuanLuyen.png";
 import DichVuYTe from "../assets/images/DichVuYTe.png";
 import DichVuKS from "../assets/images/DichVuKS.png";
+import ProductCard from "../components/ProductCart";
 
 function HomePage() {
   const [productsFeatured, setProductsFeatured] = useState([]);
@@ -36,7 +37,7 @@ function HomePage() {
     const fetchProducts = async () => {
       try {
         const products = await ProductService.getProducts();
-        setProductsFeatured(products.slice(0, 5));
+        setProductsFeatured(products.slice(0, 8));
       } catch (error) {
         console.error("Error fetching products:", error);
       }
@@ -151,30 +152,7 @@ function HomePage() {
         </h2>
         <Slider {...settings} className="mt-12">
           {productsFeatured.map((product) => (
-            <div
-              key={product.id}
-              className="p-4 bg-white shadow-md border-20 border-custom-orange rounded-2xl "
-              style={{ width: "300px", height: "400px" }}
-            >
-              <div className="flex justify-between items-center mb-2">
-                <span className="text-[#c4662e] font-semibold text-sm">
-                  {product.name}
-                </span>
-                <span className="text-[#c4662e] font-semibold text-sm">
-                  {product.price.toLocaleString("vi-VN", {
-                    style: "currency",
-                    currency: "VND",
-                  })}
-                </span>
-              </div>
-              <img
-                src={product.image[0].url}
-                alt={product.name}
-                className="w-full h-auto rounded-lg"
-              />
-              <h3 className="text-lg font-semibold mt-2">{product.name}</h3>
-              <p className="text-sm text-gray-600">{product.description}</p>
-            </div>
+              <ProductCard key={product.id} product={product} widthCard={300} heightCard={420} heightImage={270} textSizeName={18} textSizeDescription={10} textSizePrice={16} buttonSize={10} />
           ))}
         </Slider>
       </div>
