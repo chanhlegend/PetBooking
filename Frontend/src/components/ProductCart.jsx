@@ -1,29 +1,52 @@
 import { ShoppingCart } from "@mui/icons-material";
-import Rating from "@mui/material/Rating";
 
-export default function ProductCard({ product, widthCard, heightCard, heightImage, textSizeName, textSizeDescription, textSizePrice, buttonSize }) {
+export default function ProductCard({
+  product,
+  widthCard,
+  heightCard,
+  heightImage,
+  textSizeName,
+  textSizeDescription,
+  textSizePrice,
+  buttonSize,
+}) {
   return (
     <div
-      className={`p-4 bg-custom-orange shadow-md rounded-2xl w-[${widthCard}px] h-[${heightCard}] flex flex-col justify-between`}
+      className={`p-4 bg-custom-orange shadow-md rounded-2xl flex flex-col justify-between`}
+      style={{ width: `${widthCard}px`, height: `${heightCard}px` }}
     >
       <img
         src={product.image[0].url}
         alt={product.name}
-        className={`w-full h-[${heightImage}px] rounded-2xl mb-1`}
+        className={`w-full rounded-2xl mb-1`}
+        style={{ height: `${heightImage}px` }}
       />
 
-      <h3 className={` text-[${textSizeName}px] font-bold text-white truncate pt-0`}>
+      <h3
+        className={`font-bold text-white truncate pt-0`}
+        style={{ fontSize: `${textSizeName}px` }}
+      >
         {product.productName}
       </h3>
-      <div className={`flex items-center mt-2 truncate text-white text-[${textSizeDescription}px]`}>
+      <div
+        className={`flex items-center mt-2 truncate text-white`}
+        style={{ fontSize: `${textSizeDescription}px` }}
+      >
         {product.description}
       </div>
       <div className="flex justify-center items-center mt-3">
-        <span className={`text-custom-orange w-[200px] font-bold text-[${textSizePrice}px] bg-white p-2 rounded-xl mt-2`}>
-          {product.price} <span className={` text-[${textSizePrice}px]`}>VND</span>
+        <span
+          className={`text-custom-orange w-[200px] font-bold bg-white p-2 rounded-xl mt-2`}
+          style={{ fontSize: `${textSizePrice}px` }}
+        >
+          {product.price}{" "}
+          <span style={{ fontSize: `${textSizePrice}px` }}>VND</span>
         </span>
         <div className="flex justify-center items-center mt-2 ml-4">
-          <button className={`bg-white h-${buttonSize} w-${buttonSize} rounded-full text-custom-orange hover:bg-orange-100`}>
+          <button
+            className={`bg-white rounded-full text-custom-orange hover:bg-orange-100`}
+            style={{ width: `${buttonSize}px`, height: `${buttonSize}px` }}
+          >
             <ShoppingCart fontSize="small" />
           </button>
         </div>
