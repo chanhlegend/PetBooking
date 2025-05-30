@@ -152,7 +152,17 @@ function HomePage() {
         </h2>
         <Slider {...settings} className="mt-12">
           {productsFeatured.map((product) => (
-              <ProductCard key={product.id} product={product} widthCard={300} heightCard={420} heightImage={270} textSizeName={18} textSizeDescription={12} textSizePrice={16} buttonSize={40} />
+            <ProductCard
+              key={product.id}
+              product={product}
+              widthCard={300}
+              heightCard={420}
+              heightImage={270}
+              textSizeName={18}
+              textSizeDescription={12}
+              textSizePrice={16}
+              buttonSize={40}
+            />
           ))}
         </Slider>
       </div>
@@ -236,6 +246,26 @@ function HomePage() {
             </div>
           </div>
         </div>
+      </div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-0 mb-20">
+        <h2 className="text-center text-[#2a327d] font-extrabold text-xl sm:text-2xl md:text-3xl leading-tight select-none">
+          CỬA HÀNG NỔI BẬT
+        </h2>
+          <Slider {...settings} className="mt-12">
+            {productsFeatured.map((product) => (
+              <ProductCard
+                key={product.id}
+                product={product}
+                widthCard={300}
+                heightCard={420}
+                heightImage={270}
+                textSizeName={18}
+                textSizeDescription={12}
+                textSizePrice={16}
+                buttonSize={40}
+              />
+            ))}
+          </Slider>
       </div>
       <Footer />
     </div>
