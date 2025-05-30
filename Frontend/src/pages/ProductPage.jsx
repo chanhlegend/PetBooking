@@ -16,14 +16,6 @@ function ProductPage() {
     { id: 'cat6', label: 'Khác' },
   ];
 
-  const petTypes = [
-    { icon: 'fa-dog', label: 'Cho Chó', active: true },
-    { icon: 'fa-cat', label: 'Cho Mèo', active: false },
-    { icon: 'fa-hippo', label: 'Chuột Hamster', active: false },
-    { icon: 'fa-dove', label: 'Chim', active: false },
-    { icon: '', label: 'Khác', active: false },
-  ];
-
   // Product Card Component
   const ProductCard = () => (
     <div className="bg-white rounded-lg shadow p-2 flex flex-col">
@@ -158,31 +150,6 @@ function ProductPage() {
 
           {/* Main Content */}
           <main className="flex-1">
-            {/* Pet Types */}
-            <div className="flex flex-wrap gap-3 mb-6 text-xs font-semibold text-[#1E1E4F]">
-              {petTypes.map((pet, index) => (
-                <Button
-                  key={index}
-                  variant={pet.active ? 'contained' : 'outlined'}
-                  sx={{
-                    borderColor: '#f97316',
-                    color: pet.active ? 'white' : '#f97316',
-                    bgcolor: pet.active ? '#f97316' : 'transparent',
-                    '&:hover': {
-                      bgcolor: pet.active ? '#ea580c' : '#fff7ed',
-                      borderColor: '#f97316',
-                    },
-                    textTransform: 'none',
-                    fontSize: '0.75rem',
-                    px: 3,
-                    py: 1,
-                  }}
-                  startIcon={pet.icon ? <i className={`fas ${pet.icon}`}></i> : null}
-                >
-                  {pet.label}
-                </Button>
-              ))}
-            </div>
 
             {/* Search and Button */}
             <div className="flex flex-col sm:flex-row items-center gap-3 mb-6">
