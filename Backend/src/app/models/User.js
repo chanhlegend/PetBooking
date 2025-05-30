@@ -14,7 +14,7 @@ const User = new Schema({
     status: { type: String, default: 'non-active' },
     followers: [{ type: Schema.Types.ObjectId, ref: 'Follower' }],
     gender: {type: Boolean, default: true},
-    serviceId: [ {type: Schema.Types.ObjectId, ref: 'Service'}],
+    serviceId: [{type: Schema.Types.ObjectId, ref: 'Service'}],
     otp: { type: String },
     otpExpires: { type: Date },
 }, { timestamps: true });

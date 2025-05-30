@@ -4,7 +4,7 @@ import { Box, Slider, Button, Radio, RadioGroup, FormControlLabel, TextField, Ic
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
-import categoryService from '../services/categoryService'; 
+import { categoryService } from '../services/categoryService';
 
 function ProductPage() {
   const [price, setPrice] = useState(3000);
@@ -87,14 +87,14 @@ function ProductPage() {
             <div className="bg-white rounded-lg p-4 shadow">
               <h3 className="text-sm font-semibold text-[#1E1E4F] mb-2">Lọc theo giá</h3>
               <div className="text-xs text-gray-500 flex justify-between mb-1">
-                <span>3.000đ</span>
-                <span>400.000đ</span>
+                <span>1.000đ</span>
+                <span>10.000.000đ</span>
               </div>
               <Slider
                 value={price}
                 onChange={(e, newValue) => setPrice(newValue)}
-                min={3000}
-                max={400000}
+                min={1000}
+                max={10000000}
                 aria-label="Price range slider"
                 sx={{
                   color: '#f97316',
@@ -131,10 +131,10 @@ function ProductPage() {
               >
                 {categories.map((cat) => (
                   <FormControlLabel
-                    key={cat.id}
-                    value={cat.id}
+                    key={cat._id}
+                    value={cat.categoryName}
                     control={<Radio size="small" sx={{ color: '#f97316', '&.Mui-checked': { color: '#f97316' } }} />}
-                    label={cat.label}
+                    label={cat.categoryName}
                     sx={{ '& .MuiFormControlLabel-label': { fontSize: '0.75rem' } }}
                   />
                 ))}
@@ -164,7 +164,7 @@ function ProductPage() {
               <div className="relative flex-1 max-w-md w-full">
                 <TextField
                   fullWidth
-                  placeholder="Tìm kiếm vị trí"
+                  placeholder="Tìm kiếm sản phẩm..."
                   variant="outlined"
                   size="small"
                   InputProps={{
@@ -195,7 +195,7 @@ function ProductPage() {
                   py: 1,
                 }}
               >
-                Gần bạn
+                Tìm kiếm
               </Button>
             </div>
 
