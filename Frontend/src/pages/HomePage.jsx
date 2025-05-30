@@ -24,7 +24,7 @@ function HomePage() {
   const settings = {
     dots: true,
     infinite: true,
-    speed: 500,
+    speed: 600,
     slidesToShow: 4,
     slidesToScroll: 1,
     arrows: true,
@@ -36,11 +36,6 @@ function HomePage() {
     const fetchProducts = async () => {
       try {
         const products = await ProductService.getProducts();
-        products.map((product) => {
-          console.log("Product:", product.image[0].url);
-          
-        });
-        
         setProductsFeatured(products.slice(0, 5));
       } catch (error) {
         console.error("Error fetching products:", error);
@@ -154,9 +149,24 @@ function HomePage() {
         <h2 className="text-center text-[#2a327d] font-extrabold text-xl sm:text-2xl md:text-3xl leading-tight select-none">
           SẢN PHẨM NỔI BẬT
         </h2>
-        <Slider {...settings}>
+        <Slider {...settings} className="mt-12">
           {productsFeatured.map((product) => (
-            <div key={product.id} className="p-4 flex flex-col items-center">
+            <div
+              key={product.id}
+              className="p-4 bg-white shadow-md border-20 border-custom-orange rounded-2xl "
+              style={{ width: "300px", height: "400px" }}
+            >
+              <div className="flex justify-between items-center mb-2">
+                <span className="text-[#c4662e] font-semibold text-sm">
+                  {product.name}
+                </span>
+                <span className="text-[#c4662e] font-semibold text-sm">
+                  {product.price.toLocaleString("vi-VN", {
+                    style: "currency",
+                    currency: "VND",
+                  })}
+                </span>
+              </div>
               <img
                 src={product.image[0].url}
                 alt={product.name}
