@@ -152,7 +152,7 @@ function HomePage() {
         </h2>
         <Slider {...settings} className="mt-12">
           {productsFeatured.map((product) => (
-              <ProductCard key={product.id} product={product} widthCard={300} heightCard={420} heightImage={270} textSizeName={18} textSizeDescription={10} textSizePrice={16} buttonSize={10} />
+              <ProductCard key={product.id} product={product} widthCard={300} heightCard={420} heightImage={270} textSizeName={18} textSizeDescription={12} textSizePrice={16} buttonSize={40} />
           ))}
         </Slider>
       </div>
