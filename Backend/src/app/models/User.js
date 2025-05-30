@@ -6,6 +6,7 @@ const User = new Schema({
     name: { type: String, default: 'Người dùng mới' },
     dob: { type: Date },
     role: { type: String, default: 'user' },
+    description: { type: String, default: '' },
     avatar: { type: String, default: '/img/dafaultAvatar.jpg' },
     address: { type: String, default: '' },
     phone: { type: String },
