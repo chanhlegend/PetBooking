@@ -36,12 +36,17 @@ export default function ProductCard({
       </div>
       <div className="flex justify-center items-center mt-3">
         <span
-          className={`text-custom-orange w-[200px] font-bold bg-white p-2 rounded-xl mt-2`}
-          style={{ fontSize: `${textSizePrice}px` }}
+          className="text-custom-orange font-bold bg-white p-2 rounded-xl mt-2"
+          style={{
+            fontSize: `${textSizePrice}px`,
+            width: "200px",
+            display: "inline-block",
+          }}
         >
-          {product.price}{" "}
+          {Number(product.price).toLocaleString("vi-VN")}{" "}
           <span style={{ fontSize: `${textSizePrice}px` }}>VND</span>
         </span>
+
         <div className="flex justify-center items-center mt-2 ml-4">
           <button
             className={`bg-white rounded-full text-custom-orange hover:bg-orange-100`}
