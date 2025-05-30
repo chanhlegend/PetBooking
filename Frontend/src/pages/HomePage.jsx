@@ -1,7 +1,14 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import Slider from "react-slick";
+
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
+import { ProductService } from "../services/productService";
 
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import { NextArrow, PrevArrow } from "../components/ArrowCustom";
 
 import { Button } from "@mui/material";
 
@@ -12,6 +19,31 @@ import DichVuYTe from "../assets/images/DichVuYTe.png";
 import DichVuKS from "../assets/images/DichVuKS.png";
 
 function HomePage() {
+  const [productsFeatured, setProductsFeatured] = useState([]);
+
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 600,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    arrows: true,
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />,
+  };
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const products = await ProductService.getProducts();
+        setProductsFeatured(products.slice(0, 5));
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
+    };
+
+    fetchProducts();
+  }, []);
   return (
     <div>
       <Header />
@@ -111,6 +143,40 @@ function HomePage() {
             </div>
           </section>
         </div>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-0 mt-20">
+        <h2 className="text-center text-[#2a327d] font-extrabold text-xl sm:text-2xl md:text-3xl leading-tight select-none">
+          SẢN PHẨM NỔI BẬT
+        </h2>
+        <Slider {...settings} className="mt-12">
+          {productsFeatured.map((product) => (
+            <div
+              key={product.id}
+              className="p-4 bg-white shadow-md border-20 border-custom-orange rounded-2xl "
+              style={{ width: "300px", height: "400px" }}
+            >
+              <div className="flex justify-between items-center mb-2">
+                <span className="text-[#c4662e] font-semibold text-sm">
+                  {product.name}
+                </span>
+                <span className="text-[#c4662e] font-semibold text-sm">
+                  {product.price.toLocaleString("vi-VN", {
+                    style: "currency",
+                    currency: "VND",
+                  })}
+                </span>
+              </div>
+              <img
+                src={product.image[0].url}
+                alt={product.name}
+                className="w-full h-auto rounded-lg"
+              />
+              <h3 className="text-lg font-semibold mt-2">{product.name}</h3>
+              <p className="text-sm text-gray-600">{product.description}</p>
+            </div>
+          ))}
+        </Slider>
       </div>
       <div className="text-[#2e2e7a] min-h-screen">
         <div className="max-w-7xl mx-auto px-6 py-12">

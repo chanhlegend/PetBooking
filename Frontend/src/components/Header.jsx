@@ -10,9 +10,6 @@ function Header() {
   const location = useLocation();
   
   const isActive = (path) => location.pathname === path;
-
-  console.log(isActive);
-  console.log(location.pathname);
   
   return (
     <div>
