@@ -1,20 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Box, Slider, Button, Radio, RadioGroup, FormControlLabel, TextField, IconButton } from '@mui/material';
+
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+
+import categoryService from '../services/categoryService'; 
 
 function ProductPage() {
   const [price, setPrice] = useState(3000);
   const [category, setCategory] = useState('');
+  const [categories, setCategories] = useState([]);
 
-  const categories = [
-    { id: 'cat1', label: 'Thức ăn - Dinh dưỡng' },
-    { id: 'cat2', label: 'Phụ kiện - Đồ dùng' },
-    { id: 'cat3', label: 'Vệ sinh và Chăm sóc' },
-    { id: 'cat4', label: 'Đồ chơi - Huấn luyện' },
-    { id: 'cat5', label: 'Bảo vệ sức khỏe' },
-    { id: 'cat6', label: 'Khác' },
-  ];
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const data = await categoryService.getCategories();
+        setCategories(data);
+      } catch (error) {
+        console.error("Error fetching categories:", error);
+      }
+    };
+
+    fetchCategories();
+  }, []);
 
   // Product Card Component
   const ProductCard = () => (

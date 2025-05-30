@@ -13,6 +13,20 @@ class userController {
     }
   }
 
+  async getUserShop(req, res) {
+    try {
+      const shop = await User.find({ role: "shop" })
+        .populate("followers")
+        .populate("serviceId");
+      if (!shop) {
+        return res.status(404).json({ message: "Shop not found" });
+      }
+      return res.status(200).json(shop);
+    } catch (error) {
+      return res.status(500).json({ message: "Server error", error });
+    }
+  }
+
   async getUser(req, res) {
     try {
       const user = await User.findById(req.params.id)
@@ -44,7 +58,7 @@ class userController {
 
   async registerUser(req, res) {
     try {
-      const { name, email, password } = req.body;
+      const { name, email, password, role } = req.body;
 
       // Kiểm tra email đã tồn tại
       const existingUser = await User.findOne({ email });
@@ -59,6 +73,7 @@ class userController {
 
       // Lưu người dùng vào cơ sở dữ liệu
       const newUser = new User({
+        role: role || "user", 
         name,
         email,
         password: hashedPassword,
