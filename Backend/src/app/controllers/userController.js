@@ -16,8 +16,8 @@ class userController {
   async getUserShop(req, res) {
     try {
       const shop = await User.find({ role: "shop" })
-        .populate("followers")
-        .populate("serviceId");
+        // .populate("followers")
+        // .populate("serviceId");
       if (!shop) {
         return res.status(404).json({ message: "Shop not found" });
       }
