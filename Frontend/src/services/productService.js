@@ -1,11 +1,11 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:3000/api/product/get";
+const API_URL = "http://localhost:3000/api/product";
 
 export const ProductService = {
   getProducts: async () => {
     try {
-      const response = await axios.get(API_URL);
+      const response = await axios.get(`${API_URL}/get`);
       return response.data;
     } catch (error) {
       console.error("Error fetching products:", error);
@@ -14,11 +14,22 @@ export const ProductService = {
   },
   getProductById: async (id) => {
     try {
-      const response = await axios.get(`${API_URL}/${id}`);
+      const response = await axios.get(`${API_URL}/get/${id}`);
       return response.data;
     } catch (error) {
       console.error("Error fetching product by ID:", error);
       throw error;
     }
   },
+  getProductsByName: async (name) => {
+    try {
+      const response = await axios.get(`${API_URL}/search`, {
+        params: { query: name }
+      });
+      return response.data;
+    } catch (error) {
+      console.error("Error searching products by name:", error);
+      throw error;
+    }
+  }
 };
