@@ -2,7 +2,7 @@ import axios from "axios";
 
 const API_URL = "http://localhost:3000/api/category";
 
-export const categoryService = {
+export const CategoryService = {
   getCategories: async () => {
     try {
       const response = await axios.get(`${API_URL}/get`);
