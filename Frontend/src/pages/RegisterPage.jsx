@@ -1,11 +1,20 @@
 import React, { useState } from "react";
-import { Button } from "@mui/material"; // hoặc từ một file component nào đó
+import {
+  Button,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  TextField,
+} from "@mui/material";
 import { UserService } from "../services/userService";
 import { useNavigate } from "react-router-dom";
+
 const RegisterPage = () => {
   const [fullname, setFullname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [role, setRole] = useState("customer"); // default là customer
   const [errorMsg, setErrorMsg] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
@@ -14,7 +23,8 @@ const RegisterPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await UserService.register(fullname, email, password);
+      console.log(role, fullname, email, password);
+      await UserService.register(fullname, email, password, role);
       navigate("/verify", { state: { email } });
     } catch (err) {
       setErrorMsg(err.message);
@@ -27,7 +37,7 @@ const RegisterPage = () => {
         <div className="flex-1">
           <img
             src="https://storage.googleapis.com/a1aa/image/f14b8c57-4009-40cf-05bc-6871b0b813c5.jpg"
-            alt="Pet image"
+            alt="Pet"
             className="w-full h-full object-cover object-center rounded-tr-[40px] rounded-br-[40px]"
           />
         </div>
@@ -36,26 +46,35 @@ const RegisterPage = () => {
             Đăng ký
           </h1>
 
-          <div className="flex space-x-6 mb-6">
-            <button className="bg-[#c56a38] w-12 h-12 rounded-full flex items-center justify-center text-white text-xl">
-              <i className="fab fa-google"></i>
-            </button>
-            <button className="bg-[#c56a38] w-12 h-12 rounded-full flex items-center justify-center text-white text-xl">
-              <i className="fab fa-facebook-f"></i>
-            </button>
-            <button className="bg-[#c56a38] w-12 h-12 rounded-full flex items-center justify-center text-white text-xl">
-              <i className="fab fa-instagram"></i>
-            </button>
-          </div>
-
-          <div className="text-[#2a2e83] mb-3 text-sm">OR</div>
-
           <form className="w-full max-w-md" onSubmit={handleSubmit}>
+            {/* Vai trò */}
+            <FormControl fullWidth sx={{ mb: 2, borderColor: "#c56a38" }}>
+              <InputLabel id="role-label" sx={{ color: "#2a2e83" }}>
+                Vai trò
+              </InputLabel>
+              <Select
+                labelId="role-label"
+                id="role"
+                value={role}
+                label="Vai trò"
+                onChange={(e) => setRole(e.target.value)}
+                sx={{
+                  color: "#2a2e83",
+                  borderRadius: "12px",
+                  borderColor: "#c56a38",
+                }}
+              >
+                <MenuItem value="customer">Khách hàng</MenuItem>
+                <MenuItem value="shop">Cửa hàng</MenuItem>
+              </Select>
+            </FormControl>
+
+            {/* Họ tên hoặc Tên cửa hàng */}
             <label
               className="block text-[#2a2e83] text-sm font-medium mb-1"
               htmlFor="fullname"
             >
-              Họ và Tên
+              {role === "customer" ? "Họ và Tên" : "Tên cửa hàng"}
             </label>
             <input
               id="fullname"
@@ -64,6 +83,8 @@ const RegisterPage = () => {
               onChange={(e) => setFullname(e.target.value)}
               className="w-full border border-[#c56a38] rounded-xl py-3 px-5 mb-4 text-[#2a2e83] text-base outline-none"
             />
+
+            {/* Email */}
             <label
               className="block text-[#2a2e83] text-sm font-medium mb-1"
               htmlFor="email"
@@ -78,6 +99,7 @@ const RegisterPage = () => {
               className="w-full border border-[#c56a38] rounded-xl py-3 px-5 mb-4 text-[#2a2e83] text-base outline-none"
             />
 
+            {/* Mật khẩu */}
             <label
               className="block text-[#2a2e83] text-sm font-medium mb-1"
               htmlFor="password"
@@ -107,6 +129,7 @@ const RegisterPage = () => {
               ></i>
             </div>
 
+            {/* Đã có tài khoản */}
             <div className="mb-4 flex items-center justify-between text-sm text-[#2a2e83]">
               <div>
                 Bạn đã có tài khoản?{" "}
@@ -119,10 +142,12 @@ const RegisterPage = () => {
               </a>
             </div>
 
+            {/* Error */}
             {errorMsg && (
               <p className="text-red-500 text-sm mb-3">{errorMsg}</p>
             )}
 
+            {/* Submit */}
             <Button
               type="submit"
               variant="contained"
