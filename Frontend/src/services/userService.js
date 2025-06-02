@@ -13,12 +13,13 @@ export const UserService = {
     }
   },
 
-  register: async (fullname, email, password) => {
+  register: async (fullname, email, password, role) => {
     try {
       const res = await axios.post(`${API_URL}/register`, {
         fullname,
         email,
         password,
+        role,
       });
       return res.data;
     } catch (error) {
@@ -42,6 +43,16 @@ export const UserService = {
       return res.data;
     } catch (error) {
       throw new Error(error.response?.data?.message || "Xác thực OTP thất bại");
+    }
+  },
+
+  getShop: async () => {
+    try {
+      const res = await axios.get(`${API_URL}/shop`);
+      return res.data;
+    } catch (error) {
+      console.error("Lỗi khi gọi getShop:", error);
+      throw new Error(error.response?.data?.message || "Lấy thông tin cửa hàng thất bại");
     }
   },
 };

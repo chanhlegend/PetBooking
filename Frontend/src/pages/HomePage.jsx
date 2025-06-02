@@ -5,6 +5,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 import { ProductService } from "../services/productService";
+import { UserService } from "../services/userService";
 
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -18,9 +19,11 @@ import HuanLuyen from "../assets/images/HuanLuyen.png";
 import DichVuYTe from "../assets/images/DichVuYTe.png";
 import DichVuKS from "../assets/images/DichVuKS.png";
 import ProductCard from "../components/ProductCart";
+import ShopCart from "../components/ShopCart";
 
 function HomePage() {
   const [productsFeatured, setProductsFeatured] = useState([]);
+  const [shops, setShops] = useState([]);
 
   const settings = {
     dots: true,
@@ -38,6 +41,10 @@ function HomePage() {
       try {
         const products = await ProductService.getProducts();
         setProductsFeatured(products.slice(0, 8));
+        const shops = await UserService.getShop();
+        console.log(shops);
+        
+        setShops(shops.slice(0, 8));
       } catch (error) {
         console.error("Error fetching products:", error);
       }
@@ -166,7 +173,7 @@ function HomePage() {
           ))}
         </Slider>
       </div>
-      <div className="text-[#2e2e7a] min-h-screen">
+      <div className="text-[#2e2e7a]">
         <div className="max-w-7xl mx-auto px-6 py-12">
           <h1 className="text-center font-extrabold text-[28px] leading-[34px] mb-10">
             CÁC CÂU HỎI THƯỜNG GẶP
@@ -252,17 +259,10 @@ function HomePage() {
           CỬA HÀNG NỔI BẬT
         </h2>
           <Slider {...settings} className="mt-12">
-            {productsFeatured.map((product) => (
-              <ProductCard
-                key={product.id}
-                product={product}
-                widthCard={300}
-                heightCard={420}
-                heightImage={270}
-                textSizeName={18}
-                textSizeDescription={12}
-                textSizePrice={16}
-                buttonSize={40}
+            {shops.map((shop) => (
+              <ShopCart
+                key={shop.id}
+                shop={shop}
               />
             ))}
           </Slider>

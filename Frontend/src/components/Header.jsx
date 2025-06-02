@@ -1,15 +1,30 @@
-import React from 'react'
+
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import SearchIcon from '@mui/icons-material/Search';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 import { Link } from 'react-router-dom';
 import { useLocation } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
 
 function Header() {
-  const location = useLocation();
-  
+    const location = useLocation();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   const isActive = (path) => location.pathname === path;
+
+  useEffect(() => {
+    // Kiểm tra user trong localStorage (hoặc sessionStorage)
+    const user = localStorage.getItem("user");
+    if (user) {
+      console.log("User is logged in:", user);
+      
+      setIsLoggedIn(true);
+    } else {
+      setIsLoggedIn(false);
+    }
+  }, []);
+  
   
   return (
     <div>
@@ -84,9 +99,9 @@ function Header() {
         >
           <SearchIcon />
         </button>
-        <button
+        <button type='b'
           aria-label="User account"
-          className="bg-[#E35E25] rounded-full w-10 h-10 flex items-center justify-center"
+          className="bg-[#E35E25] rounded-full w-10 h-10 flex items-center justify-center hover:cursor-pointer"
         >
           <AccountCircleIcon />
         </button>
