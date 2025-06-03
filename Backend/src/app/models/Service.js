@@ -7,6 +7,7 @@
         description: { type: String, default: '' },
         image: [{ type: Schema.Types.ObjectId, ref: 'Image' }],
         evaluate: [{ type: Schema.Types.ObjectId, ref: 'Evaluate'}],
+        priceRange: { type: Number, required: true },
     }, { timestamps: true });
 
     module.exports = mongoose.model('Service', Service);
