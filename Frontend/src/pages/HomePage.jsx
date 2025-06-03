@@ -36,21 +36,29 @@ function HomePage() {
     prevArrow: <PrevArrow />,
   };
 
-  useEffect(() => {
+  
+   useEffect(() => {
     const fetchProducts = async () => {
       try {
         const products = await ProductService.getProducts();
         setProductsFeatured(products.slice(0, 8));
-        const shops = await UserService.getShop();
-        console.log(shops);
-        
-        setShops(shops.slice(0, 8));
       } catch (error) {
         console.error("Error fetching products:", error);
       }
     };
 
     fetchProducts();
+
+    const fetchShops = async () => {
+      try {
+        const shopsData = await UserService.getShop();
+        setShops(shopsData.slice(0, 5));
+      } catch (error) {
+        console.error("Error fetching shops:", error);
+      }
+    };
+
+    fetchShops();
   }, []);
   return (
     <div>
@@ -258,14 +266,11 @@ function HomePage() {
         <h2 className="text-center text-[#2a327d] font-extrabold text-xl sm:text-2xl md:text-3xl leading-tight select-none">
           CỬA HÀNG NỔI BẬT
         </h2>
-          <Slider {...settings} className="mt-12">
-            {shops.map((shop) => (
-              <ShopCart
-                key={shop.id}
-                shop={shop}
-              />
-            ))}
-          </Slider>
+        <Slider {...settings} className="mt-12">
+          {shops.map((shop) => (
+            <ShopCart key={shop._id} shop={shop} />
+          ))}
+        </Slider>
       </div>
       <Footer />
     </div>

@@ -12,7 +12,7 @@ export default function ProductCard({
 }) {
   return (
     <div
-      className={`p-4 bg-custom-orange shadow-md rounded-2xl flex flex-col justify-between`}
+      className="p-4 bg-custom-orange shadow-md rounded-2xl flex flex-col justify-between hover:cursor-pointer hover:bg-[#FF773E] hover:scale-95 transition-all duration-300"
       style={{ width: `${widthCard}px`, height: `${heightCard}px` }}
     >
       <img

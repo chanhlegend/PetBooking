@@ -6,6 +6,7 @@ export const UserService = {
   login: async (email, password) => {
     try {
       const res = await axios.post(`${API_URL}/login`, { email, password });
+      localStorage.setItem("user", JSON.stringify(res.data.user));
       window.location.href = "/home";
       return res.data;
     } catch (error) {
@@ -52,7 +53,9 @@ export const UserService = {
       return res.data;
     } catch (error) {
       console.error("Lỗi khi gọi getShop:", error);
-      throw new Error(error.response?.data?.message || "Lấy thông tin cửa hàng thất bại");
+      throw new Error(
+        error.response?.data?.message || "Lấy thông tin cửa hàng thất bại"
+      );
     }
   },
 };
