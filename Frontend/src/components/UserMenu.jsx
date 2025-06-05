@@ -53,7 +53,7 @@ function UserMenu() {
               </MenuItem>,
             ]
           : [
-              <MenuItem key="profile" onClick={() => handleGoTo("/profile")}>
+              <MenuItem key="profile" onClick={() => handleGoTo("/profile/" + user._id)}>
                 Hồ sơ
               </MenuItem>,
               <MenuItem key="orders" onClick={() => handleGoTo("/orders")}>

@@ -106,7 +106,7 @@ function Header() {
                 aria-label="User account"
                 className="bg-[#E35E25] rounded-full w-10 h-10 flex items-center justify-center hover:cursor-pointer"
               >
-                {isLoggedIn && <UserMenu />}
+                {isLoggedIn && <UserMenu  />}
               </div>
             </>
           ) : (
