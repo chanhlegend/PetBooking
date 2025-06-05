@@ -7,11 +7,13 @@ import ProductPage from './pages/ProductPage';
 import ServicePage from './pages/ServicePage';
 import ShopPage from './pages/ShopPage';
 import ProductDetailPage from './pages/ProductDetailPage';
+import ScrollToTop from './ScrollToTop';
 
 
 function App() {
   return (
     <BrowserRouter>
+     <ScrollToTop />
       <Routes>
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
