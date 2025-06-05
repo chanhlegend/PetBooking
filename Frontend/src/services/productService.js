@@ -31,5 +31,15 @@ export const ProductService = {
       console.error("Error searching products by name:", error);
       throw error;
     }
+  },
+
+  getProductsBySellerId: async (sellerId) => {
+    try {
+      const response = await axios.get(`${API_URL}/get/seller/${sellerId}`);
+      return response.data;
+    } catch (error) {
+      console.error("Error fetching products by seller ID:", error);
+      throw error;
+    }
   }
 };

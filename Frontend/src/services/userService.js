@@ -58,4 +58,17 @@ export const UserService = {
       );
     }
   },
+
+  getUserById: async (id) => {
+    try {
+      const res = await axios.get(`${API_URL}/${id}`);
+      return res.data;
+    } catch (error) {
+      console.error("Lỗi khi gọi getUserById:", error);
+      throw new Error(
+        error.response?.data?.message || "Lấy thông tin người dùng thất bại"
+      );
+    }
+  },
+
 };
