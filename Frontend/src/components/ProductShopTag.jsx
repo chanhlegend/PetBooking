@@ -2,9 +2,7 @@ import React from 'react'
 import { Avatar, Box, Button } from "@mui/material";
 
 function ProductShopTag({ product }) {
-    console.log(product?.sellerId?.name);
-
-    
+   
   return (
       <div className="mr-20 ml-20 bg-white rounded-3xl justify-around items-center justify flex flex-col my-10 flex-row gap-6 py-4 shadow-[0_4px_10px_rgba(0,0,0,0.05)]">
         {/* Left: Avatar and text */}

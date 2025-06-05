@@ -26,17 +26,7 @@ function ProductDetailPage() {
       }
       
     };
-
-    const fetchAAllProducts = async (sellerId) => {
-      try {
-        const products = await ProductService.getProductsBySellerId(sellerId);
-        console.log("All Products:", products);
-      } catch (error) {
-        console.error("Error fetching all products:", error);
-      }
-    };
     fetchProduct();
-    fetchAAllProducts(product?.sellerId?._id || "defaultSellerId"); // Replace with actual seller ID if available
   }, []);
 
   return (
