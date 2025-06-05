@@ -1,7 +1,8 @@
-export default function ShopCart({ shop }) {
+export default function ShopCart({ shop, width, height }) {
   return (
     <div
-      className="relative w-[300px] h-[400px] overflow-hidden rounded-xl shadow-lg"
+      className="relative overflow-hidden rounded-xl shadow-lg"
+      style={{ width: width, height: height }}
     >
       <img
         src={shop.avatar}

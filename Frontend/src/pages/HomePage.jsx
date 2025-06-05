@@ -268,7 +268,7 @@ function HomePage() {
         </h2>
         <Slider {...settings} className="mt-12">
           {shops.map((shop) => (
-            <ShopCart key={shop._id} shop={shop} />
+            <ShopCart key={shop._id} shop={shop} width={300} height={400} />
           ))}
         </Slider>
       </div>
