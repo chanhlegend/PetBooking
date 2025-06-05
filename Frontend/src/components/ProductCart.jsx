@@ -1,4 +1,5 @@
 import { ShoppingCart } from "@mui/icons-material";
+import { useNavigate } from "react-router-dom";
 
 export default function ProductCard({
   product,
@@ -10,8 +11,14 @@ export default function ProductCard({
   textSizePrice,
   buttonSize,
 }) {
+  const navigate = useNavigate();
+  const handleClick = (productID) => {
+    navigate(`/product/${productID}`);
+  };
+
   return (
     <div
+      onClick={() => handleClick(product._id)}
       className="p-4 bg-custom-orange shadow-md rounded-2xl flex flex-col justify-between hover:cursor-pointer hover:bg-[#FF773E] hover:scale-95 transition-all duration-300"
       style={{ width: `${widthCard}px`, height: `${heightCard}px` }}
     >

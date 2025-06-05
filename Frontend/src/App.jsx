@@ -6,6 +6,7 @@ import HomePage from './pages/HomePage';
 import ProductPage from './pages/ProductPage';
 import ServicePage from './pages/ServicePage';
 import ShopPage from './pages/ShopPage';
+import ProductDetailPage from './pages/ProductDetailPage';
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
         <Route path="/verify" element={<OTPVerifyPage />} />
         <Route path="/" element={<LoginPage />} />
         <Route path="/home" element={<HomePage />} />
+        <Route path="/product/:id" element={<ProductDetailPage />} />
         <Route path="/product" element={<ProductPage />} />
         <Route path="/service" element={<ServicePage />} />
         <Route path="/shop" element={<ShopPage />} />
