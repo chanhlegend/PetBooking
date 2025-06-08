@@ -7,8 +7,6 @@ import "slick-carousel/slick/slick-theme.css";
 import { ProductService } from "../services/productService";
 import { UserService } from "../services/userService";
 
-import Header from "../components/Header";
-import Footer from "../components/Footer";
 import { NextArrow, PrevArrow } from "../components/ArrowCustom";
 
 import { Button } from "@mui/material";
@@ -62,7 +60,6 @@ function HomePage() {
   }, []);
   return (
     <div>
-      <Header />
       <div>
         <div className=" pl-20 pr-20 mx-auto pt-12">
           <section className="relative flex flex-col md:flex-row items-center md:items-stretch gap-6 md:gap-0">
@@ -272,7 +269,6 @@ function HomePage() {
           ))}
         </Slider>
       </div>
-      <Footer />
     </div>
   );
 }

@@ -1,18 +1,15 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 import {
   TextField,
   Radio,
   RadioGroup,
   FormControlLabel,
-  FormLabel,
   Button
 } from '@mui/material';
 
 import NavbarCustomer from "../components/NavbarCustomer";
 import SubHeader from "../components/SubHeader";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
 import { UserService } from "../services/userService";
 
 const ProfileUser = () => {
@@ -33,7 +30,6 @@ const ProfileUser = () => {
 
   return (
     <div className="bg-[#FFFAF6] min-h-screen ">
-      <Header />
       <div className="grid grid-cols-4 gap-4 p-4">
         <div className="col-span-1">
           <NavbarCustomer user={user} />
@@ -165,7 +161,6 @@ const ProfileUser = () => {
             </div>
           </div>
         </div>
-      <Footer />
     </div>
   );
 };
