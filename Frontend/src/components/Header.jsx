@@ -8,6 +8,7 @@ import React, { useState, useEffect } from "react";
 import UserMenu from "./UserMenu";
 
 import LogoPet from "../assets/images/logoPet.png";
+import { ROUTE_PATH } from "../constants/routePath";
 function Header() {
   const location = useLocation();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -28,7 +29,7 @@ function Header() {
       <nav className="flex items-center justify-between px-4 py-5 bg-white border-b border-gray-200 shadow-md pl-20 pr-20">
         {/* Logo */}
         <div className="flex items-center space-x-3">
-          <Link to="/home" className="flex items-center space-x-3">
+          <Link to="/" className="flex items-center space-x-3">
             <img
               src={LogoPet}
               alt="Small fluffy white dog with a happy expression in a circular frame"
@@ -41,9 +42,9 @@ function Header() {
         <ul className="hidden md:flex space-x-10 font-bold text-[18px] leading-[24px]">
           <li>
             <Link
-              to="/home"
+              to={ROUTE_PATH.HOME}
               className={`px-6 py-2 rounded-full ${
-                isActive("/home") ? "bg-[#E35E25] text-white" : "text-[#1E2A6F]"
+                isActive(ROUTE_PATH.HOME) ? "bg-[#E35E25] text-white" : "text-[#1E2A6F]"
               }`}
             >
               TRANG CHỦ
@@ -51,9 +52,9 @@ function Header() {
           </li>
           <li>
             <Link
-              to="/product"
+              to={ROUTE_PATH.PRODUCT}
               className={`px-6 py-2 rounded-full ${
-                isActive("/product")
+                isActive(ROUTE_PATH.PRODUCT)
                   ? "bg-[#E35E25] text-white"
                   : "text-[#1E2A6F]"
               }`}
@@ -63,9 +64,9 @@ function Header() {
           </li>
           <li>
             <Link
-              to="/service"
+              to={ROUTE_PATH.SERVICE}
               className={`px-6 py-2 rounded-full ${
-                isActive("/service")
+                isActive(ROUTE_PATH.SERVICE)
                   ? "bg-[#E35E25] text-white"
                   : "text-[#1E2A6F]"
               }`}
@@ -75,16 +76,15 @@ function Header() {
           </li>
           <li>
             <Link
-              to="/shop"
+              to={ROUTE_PATH.SHOP}
               className={`px-6 py-2 rounded-full ${
-                isActive("/shop") ? "bg-[#E35E25] text-white" : "text-[#1E2A6F]"
+                isActive(ROUTE_PATH.SHOP) ? "bg-[#E35E25] text-white" : "text-[#1E2A6F]"
               }`}
             >
               CỬA HÀNG
             </Link>
           </li>
         </ul>
-
         {/* Action Buttons */}
         <div className="hidden md:flex space-x-6 text-white text-lg">
           {isLoggedIn ? (
@@ -112,13 +112,13 @@ function Header() {
           ) : (
             <>
               <Link
-                to="/login"
+                to={ROUTE_PATH.LOGIN}
                 className="bg-[#E35E25] text-[14px] text-white px-3 py-1 rounded-full hover:bg-[#c24d1f]"
               >
                 Đăng nhập
               </Link>
               <Link
-                to="/register"
+                to={ROUTE_PATH.REGISTER}
                 className="bg-[#E35E25] text-[14px] text-white px-3 py-1 rounded-full hover:bg-[#c24d1f]"
               >
                 Đăng ký

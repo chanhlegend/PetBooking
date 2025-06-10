@@ -4,13 +4,14 @@ const API_URL = "http://localhost:3000/api/user/account";
 
 export const UserService = {
   login: async (email, password) => {
-    try {
-      const res = await axios.post(`${API_URL}/login`, { email, password });
-      localStorage.setItem("user", JSON.stringify(res.data.user));
+    // Đăng nhập cứng, không gọi API
+    if (email === "admin@gmail.com" && password === "123456") {
+      const user = { email, fullname: "Admin", role: "admin" };
+      localStorage.setItem("user", JSON.stringify(user));
       window.location.href = "/home";
-      return res.data;
-    } catch (error) {
-      throw new Error(error.response?.data?.message || "Đăng nhập thất bại");
+      return { user };
+    } else {
+      throw new Error("Đăng nhập thất bại");
     }
   },
 
@@ -70,5 +71,4 @@ export const UserService = {
       );
     }
   },
-
 };
