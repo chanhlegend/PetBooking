@@ -31,11 +31,10 @@ function ProductDetailPage() {
 
   return (
     <div className="bg-[#FFFAF6] min-h-screen">
-    <Header />
-    <ProductDetailCart product={product} />
-    <ProductShopTag product={product} />
-    <ProductDescriptionCart product={product} />
-    <h2 className='text-2xl font-bold mb-4 mx-20 text-custom-orange'>Đánh Giá Sản Phẩm</h2>
+      <ProductDetailCart product={product} />
+      <ProductShopTag product={product} />
+      <ProductDescriptionCart product={product} />
+      <h2 className="text-2xl font-bold mb-4 mx-20 text-custom-orange">Đánh Giá Sản Phẩm</h2>
     <ProductReviewCart />
     </div>
   );
