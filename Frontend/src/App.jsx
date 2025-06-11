@@ -1,16 +1,15 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import ScrollToTop from './ScrollToTop';
-import AppRoute from './config/routes';
-import React from 'react';
-
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import ScrollToTop from "./ScrollToTop";
+import AppRoute from "./config/routes";
+import React from "react";
 
 function App() {
   return (
     <BrowserRouter>
-     <ScrollToTop />
+      <ScrollToTop />
       <Routes>
         {AppRoute.map((route, index) => {
-          const Layout = route.layout || React.Fragment; 
+          const Layout = route.layout || React.Fragment;
           const Page = route.page;
           return (
             <Route

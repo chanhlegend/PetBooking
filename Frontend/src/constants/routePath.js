@@ -3,6 +3,7 @@ export const ROUTE_PATH = {
   REGISTER: '/register',
   VERIFY: '/verify',
   HOME: '/',
+  HOME_Page: '/home',
   PROFILE: '/profile/:id',
   PRODUCT_DETAIL: '/product/:id',
   PRODUCT: '/product',

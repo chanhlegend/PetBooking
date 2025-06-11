@@ -15,13 +15,15 @@ const ProductManagerPage = React.lazy(() => import("../pages/ProductManagerPage"
 
 const AppRoute = [
     { path: ROUTE_PATH.HOME, page: HomePage, layout: MainLayout },
-    { path: ROUTE_PATH.LOGIN, page: LoginPage, layout: MainLayout },
+    { path: ROUTE_PATH.HOME_Page, page: HomePage, layout: MainLayout },
+    { path: ROUTE_PATH.LOGIN, page: LoginPage},
     { path: ROUTE_PATH.PRODUCT, page: ProductPage, layout: MainLayout },
     { path: ROUTE_PATH.PRODUCT_DETAIL, page: ProductDetailPage, layout: MainLayout },
     { path: ROUTE_PATH.PROFILE, page: ProfileUser, layout: MainLayout },
-    { path: ROUTE_PATH.REGISTER, page: RegisterPage, layout: MainLayout },
+    { path: ROUTE_PATH.REGISTER, page: RegisterPage},
     { path: ROUTE_PATH.SERVICE, page: ServicePage, layout: MainLayout },
     { path: ROUTE_PATH.SHOP, page: ShopPage, layout: MainLayout },
+    { path: ROUTE_PATH.VERIFY, page: OTPVerifyPage},
     { path: ROUTE_PATH.VERIFY, page: OTPVerifyPage, layout: MainLayout },
     { path: ROUTE_PATH.PRODUCT_SHOP_MANAGER, page: ProductManagerPage, layout: MainLayout },
 ];
