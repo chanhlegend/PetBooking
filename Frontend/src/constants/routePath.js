@@ -9,4 +9,5 @@ export const ROUTE_PATH = {
   PRODUCT: '/product',
   SERVICE: '/service',
   SHOP: '/shop',
+  PRODUCT_SHOP_MANAGER: '/shop/product-manager',
 };
