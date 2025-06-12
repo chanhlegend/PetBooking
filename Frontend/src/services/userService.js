@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:3000/api/user/account";
+const API_URL = "https://petbooking-backend.onrender.com/api/user/account";
 
 export const UserService = {
   login: async (email, password) => {
@@ -11,7 +11,15 @@ export const UserService = {
       window.location.href = "/home";
       return { user };
     } else {
-      throw new Error("Đăng nhập thất bại");
+      try {
+        const res = await axios.post(`${API_URL}/login`, { email, password });
+        const user = res.data.user;
+        localStorage.setItem("user", JSON.stringify(user));
+        window.location.href = "/home";
+        return { user };
+      } catch (error) {
+        throw new Error(error.response?.data?.message || "Đăng nhập thất bại");
+      }
     }
   },
 
@@ -68,6 +76,26 @@ export const UserService = {
       console.error("Lỗi khi gọi getUserById:", error);
       throw new Error(
         error.response?.data?.message || "Lấy thông tin người dùng thất bại"
+      );
+    }
+  },
+
+  updateUser: async (id, userData) => {
+    try {
+      const res = await axios.post(`${API_URL}/change-profile/${id}`, {
+        name: userData.name,
+        address: userData.address,
+        email: userData.email,
+        phone: userData.phone,
+        gender: userData.gender,
+        dob: null, // Giả sử không có trường dob trong userData
+      });
+      return res.data;
+    } catch (error) {
+      console.error("Lỗi khi gọi updateUser:", error);
+      throw new Error(
+        error.response?.data?.message ||
+          "Cập nhật thông tin người dùng thất bại"
       );
     }
   },

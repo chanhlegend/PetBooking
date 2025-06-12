@@ -9,4 +9,5 @@ export const ROUTE_PATH = {
   PRODUCT: '/product',
   SERVICE: '/service',
   SHOP: '/shop',
+  ORDER: '/order',
 };

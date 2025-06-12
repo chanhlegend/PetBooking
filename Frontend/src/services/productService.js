@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:3000/api/product";
+const API_URL = "https://petbooking-backend.onrender.com/api/product";
 
 export const ProductService = {
   getProducts: async () => {

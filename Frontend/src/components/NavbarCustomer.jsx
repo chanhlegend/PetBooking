@@ -23,16 +23,7 @@ function NavbarCustomer({ user }) {
       {/* Tên người dùng */}
       <p className="text-center text-[20px] text-black mb-3 font-semibold">{user ? user.name : "Người dùng mới"}</p>
 
-      {/* Nút Sửa Hồ Sơ */}
-      <div className="flex justify-center mb-5">
-        <Button
-          variant="contained"
-          size="small"
-          sx={{ backgroundColor: "#d95a1a", fontSize: "0.75rem", textTransform: "none", borderRadius: "6px" }}
-        >
-          Sửa Hồ Sơ
-        </Button>
-      </div>
+
 
       {/* Danh sách menu */}
       <ul className="space-y-3 text-xs text-black ml-14 mt-8">

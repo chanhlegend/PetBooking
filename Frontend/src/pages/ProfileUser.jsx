@@ -11,9 +11,11 @@ import {
 import NavbarCustomer from "../components/NavbarCustomer";
 import SubHeader from "../components/SubHeader";
 import { UserService } from "../services/userService";
+import EditProfileDialog from "@/components/EditProfileDialog";
 
 const ProfileUser = () => {
   const [user, setUser] = useState(null);
+  const [openDialog, setOpenDialog] = useState(false);
 
   useEffect(() => {
     const userId = window.location.pathname.split("/").pop();
@@ -40,7 +42,7 @@ const ProfileUser = () => {
             subTitle={"Quản lý thông tin hồ sơ để bảo mật tài khoản của bạn"}
           />
             <div className="bg-white rounded-xl shadow-md flex flex-col md:flex-row p-8 md:p-12 gap-8 md:gap-12">
-              <form className="flex-1 space-y-4">
+              <div className="flex-1 space-y-4">
                 <div className="flex items-center gap-4">
                   <label
                     htmlFor="name"
@@ -54,7 +56,7 @@ const ProfileUser = () => {
                     size="small"
                     placeholder=""
                     fullWidth
-                    defaultValue={user?.name}
+                    value={user?.name ?? ""}
                     InputProps={{ className: "bg-[#fef3ef]" }}
                   />
                 </div>
@@ -121,13 +123,13 @@ const ProfileUser = () => {
                       value="nam"
                       control={<Radio />}
                       label="Nam"
-                      {...(user && user.gender === "nam" ? { checked: true } : {})}
+                      {...(user && user.gender === "true" ? { checked: true } : {})}
                     />
                     <FormControlLabel
                       value="nu"
                       control={<Radio />}
                       label="Nữ"
-                      {...(user && user.gender === "nu" ? { checked: true } : {})}
+                      {...(user && user.gender === "false" ? { checked: true } : {})}
                     />
                   </RadioGroup>
                 </div>
@@ -136,12 +138,18 @@ const ProfileUser = () => {
                     variant="contained"
                     style={{ backgroundColor: "#d3542a" }}
                     className="rounded-full px-10 py-2 text-white hover:bg-[#b84320]"
-                    type="submit"
+                    onClick={() => setOpenDialog(true)}
                   >
-                    Lưu
+                    Chỉnh sửa
                   </Button>
+
+                  <EditProfileDialog
+                    open={openDialog}
+                    onClose={() => setOpenDialog(false)}
+                    user={user}
+                  />
                 </div>
-              </form>
+              </div>
               <div className="flex flex-col items-center justify-start gap-4 border-l border-gray-300 pl-8 min-w-[180px]">
                 <div className="w-20 h-20 rounded-full bg-gray-300 flex items-center justify-center">
                   <i className="fas fa-user text-white text-3xl"></i>
