@@ -6,7 +6,7 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
 
 
-import LogoPet1 from '../assets/images/logoPet1.png';
+import LogoPet1 from '../assets/images/LogoPet1.png';
 import { Link } from 'react-router-dom';
 function Footer() {
   return (
