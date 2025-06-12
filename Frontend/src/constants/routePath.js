@@ -10,4 +10,6 @@ export const ROUTE_PATH = {
   SERVICE: '/service',
   SHOP: '/shop',
   ORDER: '/order',
+  PRODUCT_SHOP_MANAGER: '/shop/product-manager',
+  SERVICE_SHOP_MANAGER: '/shop/service-manager',
 };
