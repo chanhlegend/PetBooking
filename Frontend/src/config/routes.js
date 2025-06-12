@@ -11,6 +11,7 @@ const RegisterPage = React.lazy(() => import("../pages/RegisterPage"));
 const ServicePage = React.lazy(() => import("../pages/ServicePage"));
 const ShopPage = React.lazy(() => import("../pages/ShopPage"));
 const OTPVerifyPage = React.lazy(() => import("../pages/VerifyPage"));
+const OrderPage = React.lazy(() => import("../pages/OrderPage"));
 const ProductManagerPage = React.lazy(() => import("../pages/ProductManagerPage"));
 const ServiceManagerPage = React.lazy(() => import("../pages/ServiceManagerPage"));
 
@@ -25,6 +26,7 @@ const AppRoute = [
     { path: ROUTE_PATH.SERVICE, page: ServicePage, layout: MainLayout },
     { path: ROUTE_PATH.SHOP, page: ShopPage, layout: MainLayout },
     { path: ROUTE_PATH.VERIFY, page: OTPVerifyPage},
+    { path: ROUTE_PATH.ORDER, page: OrderPage, layout: MainLayout },
     { path: ROUTE_PATH.VERIFY, page: OTPVerifyPage, layout: MainLayout },
     { path: ROUTE_PATH.PRODUCT_SHOP_MANAGER, page: ProductManagerPage, layout: MainLayout },
     { path: ROUTE_PATH.SERVICE_SHOP_MANAGER, page: ServiceManagerPage, layout: MainLayout },
