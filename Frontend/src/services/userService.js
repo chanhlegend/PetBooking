@@ -8,14 +8,14 @@ export const UserService = {
     if (email === "admin@gmail.com" && password === "123456") {
       const user = { email, fullname: "Admin", role: "admin" };
       localStorage.setItem("user", JSON.stringify(user));
-      window.location.href = "/home";
+      window.location.href = "/";
       return { user };
     } else {
       try {
         const res = await axios.post(`${API_URL}/login`, { email, password });
         const user = res.data.user;
         localStorage.setItem("user", JSON.stringify(user));
-        window.location.href = "/home";
+        window.location.href = "/";
         return { user };
       } catch (error) {
         throw new Error(error.response?.data?.message || "Đăng nhập thất bại");

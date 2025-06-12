@@ -17,7 +17,6 @@ const ServiceManagerPage = React.lazy(() => import("../pages/ServiceManagerPage"
 
 const AppRoute = [
     { path: ROUTE_PATH.HOME, page: HomePage, layout: MainLayout },
-    { path: ROUTE_PATH.HOME_Page, page: HomePage, layout: MainLayout },
     { path: ROUTE_PATH.LOGIN, page: LoginPage},
     { path: ROUTE_PATH.PRODUCT, page: ProductPage, layout: MainLayout },
     { path: ROUTE_PATH.PRODUCT_DETAIL, page: ProductDetailPage, layout: MainLayout },

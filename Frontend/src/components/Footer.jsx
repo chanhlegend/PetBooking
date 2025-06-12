@@ -13,7 +13,7 @@ function Footer() {
      <footer className="bg-custom-orange text-white font-sans px-6 py-10 mx-auto flex flex-wrap justify-between pl-20 pr-20" style={{ gap: '6rem' }}>
       {/* Logo + Name */}
       <div className="flex flex-col items-center sm:items-start w-full sm:w-auto mb-8 sm:mb-0">
-        <Link to="/home" className="flex items-center space-x-3">
+        <Link to="/" className="flex items-center space-x-3">
           <img
             src={LogoPet1}
             alt="Fluffy white dog standing on green grass"
