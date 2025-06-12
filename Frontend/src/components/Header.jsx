@@ -7,7 +7,7 @@ import { useLocation } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import UserMenu from "./UserMenu";
 
-import LogoPet from "../assets/images/logoPet.png";
+import LogoPet from "../assets/images/LogoPet.png";
 import { ROUTE_PATH } from "../constants/routePath";
 function Header() {
   const location = useLocation();
