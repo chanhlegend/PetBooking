@@ -75,6 +75,101 @@ class serviceController {
       return res.status(500).json({ message: "Server error", error });
     }
   }
+
+  async deleteService(req, res) {
+    try {
+      const { serviceId } = req.body;
+      const deletedService = await Service.findByIdAndDelete(serviceId);
+      if (!deletedService) {
+        return res.status(404).json({ message: "Service not found" });
+      }
+      return res.status(200).json({ message: "Service deleted successfully" });
+    } catch (error) {
+      return res.status(500).json({ message: "Server error", error });
+    }
+  }
+
+  async deleteServicePrice(req, res) {
+    try {
+      const { servicePriceId } = req.body;
+      const deletedServicePrice = await ServicePrice.findByIdAndDelete(servicePriceId);
+      if (!deletedServicePrice) {
+        return res.status(404).json({ message: "Service price not found" });
+      }
+      return res.status(200).json({ message: "Service price deleted successfully" });
+    } catch (error) {
+      return res.status(500).json({ message: "Server error", error });
+    }
+  }
+
+  async deleteWeightRange(req, res) {
+    try {
+      const { weightRangeId } = req.body;
+      const deletedWeightRange = await WeightRange.findByIdAndDelete(weightRangeId);
+      if (!deletedWeightRange) {
+        return res.status(404).json({ message: "Weight range not found" });
+      }
+      return res.status(200).json({ message: "Weight range deleted successfully" });
+    } catch (error) {
+      return res.status(500).json({ message: "Server error", error });
+    }
+  }
+
+  async editService(req, res) {
+    try {
+      const { serviceId, serviceName, userId, description, image, priceRange } = req.body;
+      const updatedService = await Service.findByIdAndUpdate(
+        serviceId,
+        { serviceName, userId, description, image, priceRange },
+        { new: true }
+      );
+      if (!updatedService) {
+        return res.status(404).json({ message: "Service not found" });
+      }
+      return res.status(200).json(updatedService);
+    } catch (error) {
+      return res.status(500).json({ message: "Server error", error });
+    }
+  }
+  
+  async editServicePrice(req, res) {
+    try {
+      const { servicePriceId, serviceId, price, weightRange } = req.body;
+      const updatedServicePrice = await ServicePrice.findByIdAndUpdate(
+        servicePriceId,
+        { serviceId, price, weightRange },
+        { new: true }
+      );
+      if (!updatedServicePrice) {
+        return res.status(404).json({ message: "Service price not found" });
+      }
+      return res.status(200).json(updatedServicePrice);
+    } catch (error) {
+      return res.status(500).json({ message: "Server error", error });
+    }
+  }
+
+  async editWeightRange(req, res) {
+    try {
+      const { weightRangeId, minWeight, maxWeight } = req.body;
+      if (minWeight >= maxWeight) {
+        return res
+          .status(400)
+          .json({ message: "Min weight must be less than max weight" });
+      }
+      const updatedWeightRange = await WeightRange.findByIdAndUpdate(
+        weightRangeId,
+        { minWeight, maxWeight },
+        { new: true }
+      );
+      if (!updatedWeightRange) {
+        return res.status(404).json({ message: "Weight range not found" });
+      }
+      return res.status(200).json(updatedWeightRange);
+    } catch (error) {
+      return res.status(500).json({ message: "Server error", error });
+    }
+  }
 }
 
 module.exports = new serviceController();
